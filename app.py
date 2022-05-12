@@ -93,8 +93,14 @@ def logout():
 @login_required
 def index():
     auth_user = current_user.username
-    print(auth_user)
     return render_template("index.html", auth_user=auth_user)
+
+
+@app.route('/find_work', methods=["GET"])
+@login_required
+def find_work():
+    auth_user = current_user.username
+    return render_template("find_work.html", auth_user=auth_user)
 
 
 if __name__ == '__main__':
