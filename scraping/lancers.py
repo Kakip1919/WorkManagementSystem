@@ -1,11 +1,9 @@
 from selenium import webdriver
-from selenium.common.exceptions import WebDriverException
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
+
 
 lists = {}
 options = webdriver.ChromeOptions()
-# options.add_argument("--headless")
+options.add_argument("--headless")
 driver = webdriver.Chrome('../chromedriver', options=options)
 driver.get('https://www.lancers.jp/work/search/system?open=1&ref=header_menu')
 
@@ -37,3 +35,4 @@ for i in range(30):
         "job_title": replace_words(job_title),
         "job_price": replace_words(job_price),
     }
+    print(lists.values())

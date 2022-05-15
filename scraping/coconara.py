@@ -1,5 +1,4 @@
 from time import sleep
-
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -10,7 +9,7 @@ def replace_words(word):
 
 lists = {}
 options = webdriver.ChromeOptions()
-# options.add_argument("--headless")
+options.add_argument("--headless")
 options.add_argument(
     '--user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 10_2 like Mac OS X) AppleWebKit/602.3.12 (KHTML, like Gecko) Version/10.0 Mobile/14C92 Safari/602.1')
 driver = webdriver.Chrome('../chromedriver', options=options)
@@ -52,6 +51,5 @@ for i in range(post_count):
         "job_price": replace_words(job_price),
         "client_name": replace_words(client_name),
         "client_url": replace_words(client_url),
-        "post_date": replace_words(post_time)
     }
-    print(lists.values())
+    print(lists[i]["job_description"])

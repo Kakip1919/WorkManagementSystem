@@ -1,12 +1,10 @@
 from selenium import webdriver
-from selenium.common.exceptions import WebDriverException
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
 lists = {}
 options = webdriver.ChromeOptions()
 
-# options.add_argument("--headless")
+options.add_argument("--headless")
 
 driver = webdriver.Chrome('../chromedriver', options=options)
 
@@ -54,5 +52,5 @@ for i in range(li_nodes):
         "client_url": replace_words(client_url),
         "post_time": replace_words(post_date)
     }
+    print(lists[i].values())
 
-print(lists[5].values())

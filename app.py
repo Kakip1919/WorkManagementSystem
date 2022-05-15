@@ -1,15 +1,15 @@
-import concurrent.futures
+import concurrent.futures  # 並列処理
 
 import flask
-from flask_login import login_user, LoginManager, UserMixin, login_required, logout_user, current_user
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_sqlalchemy import SQLAlchemy
+from flask_login import login_user, LoginManager, UserMixin, login_required, logout_user, current_user  # Login関係のライブラリ
+from werkzeug.security import generate_password_hash, check_password_hash  # パスワードの暗号化
+from flask_sqlalchemy import SQLAlchemy  # ORマッパー
 from flask import Flask, render_template, request, redirect
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
-# DBはSQLiteを使う
 
+# DBはSQLiteを使う
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.work_management_system'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
@@ -87,6 +87,12 @@ def login():
 def logout():
     logout_user()
     return redirect('/login')
+
+
+@app.route('/findwork')
+@login_required  # ログイン状態のみアクセス可のおまじない
+def find_work():  # 同じ名前の関数にするとエラーがでる　関数名は何でもよい
+    return render_template('find_work/index.html')
 
 
 @app.route('/', methods=["GET"])
